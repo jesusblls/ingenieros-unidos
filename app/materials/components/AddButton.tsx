@@ -18,7 +18,7 @@ const AddButton = () => {
     <>
       <button
         onClick={handleAddMaterial}
-        className="fixed bottom-4 right-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        className="fixed bottom-4 mb-14 md:mb-0 right-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
       >
         Agregar <HiPlusCircle className="inline-block " />
       </button>
