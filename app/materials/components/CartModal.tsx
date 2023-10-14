@@ -50,7 +50,7 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
 
           <div className="mt-10 flex flex-col gap-y-8">
             {cartItems.map((item) => (
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between" key={item.id}>
                 <div className="flex items-center">
                   <Image
                     src={item.image || "https://via.placeholder.com/300"}
