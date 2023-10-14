@@ -10,8 +10,12 @@ interface MaterialListProps {
   currentUser: User;
 }
 
+interface MaterialWithUser extends Material {
+  user: User;
+}
+
 const MaterialList: React.FC<MaterialListProps> = ({ currentUser }) => {
-  const [materials, setMaterials] = useState<Material[]>([]);
+  const [materials, setMaterials] = useState<MaterialWithUser[]>([]);
   const searchParams = useSearchParams();
   const search = searchParams?.get("search");
   const filter = searchParams?.get("filter");
@@ -32,7 +36,7 @@ const MaterialList: React.FC<MaterialListProps> = ({ currentUser }) => {
 
   useEffect(() => {
     getMaterials();
-  }, [search, filter]);
+  }, [search, filter, materials]);
 
   return (
     <div className="grid my-10 grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 bg-gray-100 justify-items-center">

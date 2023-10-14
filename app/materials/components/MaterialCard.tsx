@@ -9,8 +9,11 @@ import { IoRemove } from "react-icons/io5";
 import { BsTrash } from "react-icons/bs";
 import axios from "axios";
 
+interface MaterialWithUser extends Material {
+  user: User;
+}
 interface MaterialCardProps {
-  material: Material;
+  material: MaterialWithUser;
   currentUser: User;
 }
 
