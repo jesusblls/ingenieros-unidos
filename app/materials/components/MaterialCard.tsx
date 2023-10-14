@@ -8,6 +8,7 @@ import { CartContext } from "@/app/context/CartContext";
 import { IoRemove } from "react-icons/io5";
 import { BsTrash } from "react-icons/bs";
 import axios from "axios";
+import MaterialDetailModal from "./MaterialDetailModal";
 
 interface MaterialWithUser extends Material {
   user: User;
@@ -23,6 +24,7 @@ const MaterialCard: React.FC<MaterialCardProps> = ({
 }) => {
   const router = useRouter();
   const { addToCart } = useContext(CartContext);
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleAddToCart = (item: Material) => {
     addToCart(item);
@@ -40,15 +42,22 @@ const MaterialCard: React.FC<MaterialCardProps> = ({
       });
   };
 
+  const handleOpenModal = () => {
+    setIsOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsOpen(false);
+  };
+
   return (
     <div className="w-full max-w-md bg-white border border-gray-200 rounded-lg shadow">
-      <a href="#">
-        <img
-          className="rounded-lg w-full h-64 object-cover"
-          src={material.image || "https://via.placeholder.com/300"}
-          alt="material image"
-        />
-      </a>
+      <img
+        className="rounded-lg w-full h-64 object-cover"
+        src={material.image || "https://via.placeholder.com/300"}
+        alt="material image"
+        onClick={handleOpenModal}
+      />
       <div className="px-5 pb-2 mt-3">
         <a href="#">
           <h5 className="text-xl font-bold tracking-tight text-gray-90">
@@ -74,6 +83,11 @@ const MaterialCard: React.FC<MaterialCardProps> = ({
           )}
         </div>
       </div>
+      <MaterialDetailModal
+        material={material}
+        isOpen={isOpen}
+        onClose={handleCloseModal}
+      />
     </div>
   );
 };
