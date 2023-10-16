@@ -2,12 +2,15 @@ import { NextRequest, NextResponse } from "next/server";
 
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import prisma from "@/app/libs/prismadb";
+import { MaterialType } from '@prisma/client';
 
 export async function GET(request: NextRequest) {
     //Get query params
     const url = new URL(request.url || '');
     const search = url.searchParams.get('search') == 'null' ? undefined : url.searchParams.get('search');
     const filter = url.searchParams.get('filter') == 'null' ? undefined : url.searchParams.get('filter');
+
+    console.log(search, filter);
 
     const materials = await prisma.material.findMany({
         orderBy: {
@@ -21,6 +24,10 @@ export async function GET(request: NextRequest) {
                 contains: search,
                 mode: 'insensitive',
             } : undefined,
+            type: filter as MaterialType ? {
+                equals: filter as MaterialType,
+            } : undefined
+            ,
         }
     });
     
@@ -37,6 +44,7 @@ export async function POST(
         description,
         image,
         price,
+        type,
     } = body;
 
     if (!currentUser?.id || !currentUser?.email) {
@@ -52,6 +60,7 @@ export async function POST(
             description,
             image,
             price,
+            type,
             user: {
                 connect: { id: currentUser.id }
             },

@@ -27,13 +27,13 @@ const Search = () => {
   const handleFilterChange = (event: any) => {
     //update query param
     setFilter(event.target.value);
-    router.push(`/materials?filter=${event.target.value}&search=${search}`);
+    router.push(`/materials?type=${event.target.value}&search=${search}`);
   };
 
   const handleSearch = (event: any) => {
     //update query param
     setSearch(event.target.value);
-    router.push(`/materials?search=${event.target.value}&filter=${filter}`);
+    router.push(`/materials?search=${event.target.value}&type=${filter}`);
   };
 
   const handleCartModal = () => {

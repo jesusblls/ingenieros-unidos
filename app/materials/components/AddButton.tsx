@@ -1,8 +1,8 @@
 "use client";
 
-import { HiPlusCircle } from "react-icons/hi";
 import AddMaterialModal from "./AddMaterialModal";
 import { useState } from "react";
+import { FiPlus } from "react-icons/fi";
 
 const AddButton = () => {
   const [isOpenMaterialModal, setIsOpenMaterialModal] = useState(false);
@@ -18,9 +18,10 @@ const AddButton = () => {
     <>
       <button
         onClick={handleAddMaterial}
-        className="fixed bottom-4 mb-14 md:mb-0 right-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        className="flex fixed bottom-4 mb-14 md:mb-0 right-4 bg-blue-500 hover:bg-blue-700 p-2 text-white font-bold rounded"
       >
-        Agregar <HiPlusCircle className="inline-block " />
+        <span className="hidden md:inline-block">Agregar</span>
+        <FiPlus className="ml-0 md:ml-1 inline-block" size={20} />
       </button>
       <AddMaterialModal
         isOpen={isOpenMaterialModal}

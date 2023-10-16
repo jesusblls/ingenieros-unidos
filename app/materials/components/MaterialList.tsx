@@ -18,7 +18,7 @@ const MaterialList: React.FC<MaterialListProps> = ({ currentUser }) => {
   const [materials, setMaterials] = useState<MaterialWithUser[]>([]);
   const searchParams = useSearchParams();
   const search = searchParams?.get("search");
-  const filter = searchParams?.get("filter");
+  const filter = searchParams?.get("type");
 
   const getMaterials = async () => {
     const response = await fetch(
@@ -36,10 +36,10 @@ const MaterialList: React.FC<MaterialListProps> = ({ currentUser }) => {
 
   useEffect(() => {
     getMaterials();
-  }, [search, filter, materials]);
+  }, [search, filter]);
 
   return (
-    <div className="grid my-10 grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 bg-gray-100 justify-items-center">
+    <div className="grid my-10 grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 bg-gray-100 justify-items-center pb-20">
       {materials.map((material) => (
         <MaterialCard
           key={material.id}

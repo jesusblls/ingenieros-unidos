@@ -10,6 +10,7 @@ import Image from "next/image";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import Select from "@/app/components/inputs/Select";
 
 interface AddMaterialModalProps {
   isOpen?: boolean;
@@ -35,6 +36,7 @@ const AddMaterialModal: React.FC<AddMaterialModalProps> = ({
       description: "",
       price: "",
       image: "",
+      type: "",
     },
   });
 
@@ -105,6 +107,17 @@ const AddMaterialModal: React.FC<AddMaterialModalProps> = ({
                 errors={errors}
                 required
                 register={register}
+              />
+              <Select
+                label="Tipo"
+                options={[
+                  { label: "Didáctico", value: "didactic" },
+                  { label: "Electrónico", value: "electronic" },
+                ]}
+                onChange={({ value }) =>
+                  setValue("type", value, { shouldValidate: true })
+                }
+                multi={false}
               />
               <div>
                 <label

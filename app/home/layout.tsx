@@ -13,7 +13,12 @@ export default async function HomeLayout({
         <h1 className="text-5xl font-bold text-white">Bienvenido a</h1>
         <h2 className="text-2xl font-bold text-white">Ingenieros Unidos</h2>
       </div>
-      <div className="flex flex-col md:flex-row w-full h-screen">
+      <div
+        className="flex flex-col md:flex-row w-full pb-12"
+        style={{
+          height: "100svh",
+        }}
+      >
         <div
           className="md:w-1/2 h-1/2 md:h-screen flex items-center justify-center relative group"
           style={{
