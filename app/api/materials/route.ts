@@ -10,8 +10,6 @@ export async function GET(request: NextRequest) {
     const search = url.searchParams.get('search') == 'null' ? undefined : url.searchParams.get('search');
     const filter = url.searchParams.get('filter') == 'null' ? undefined : url.searchParams.get('filter');
 
-    console.log(search, filter);
-
     const materials = await prisma.material.findMany({
         orderBy: {
             createdAt: 'desc'
