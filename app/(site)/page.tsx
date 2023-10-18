@@ -25,7 +25,8 @@ const Auth = () => {
         <h2
           className="
             text-center 
-            text-3xl 
+            text-2xl
+            md:text-3xl 
             font-bold 
             tracking-tight 
             text-gray-900

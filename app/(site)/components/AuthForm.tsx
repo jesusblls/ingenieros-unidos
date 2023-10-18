@@ -106,7 +106,7 @@ const AuthForm = () => {
   };
 
   return (
-    <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+    <div className="mt-0 md:mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div
         className="
         md:bg-white
@@ -117,7 +117,10 @@ const AuthForm = () => {
           sm:px-10
         "
       >
-        <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
+        <form
+          className="space-y-4 md:space-y-6"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           {variant === "REGISTER" && (
             <Input
               disabled={isLoading}
