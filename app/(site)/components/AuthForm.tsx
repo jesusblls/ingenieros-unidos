@@ -57,8 +57,6 @@ const AuthForm = () => {
         return;
       }
 
-      console.log("entramos");
-
       axios
         .post("/api/register", data)
         .then(() =>
