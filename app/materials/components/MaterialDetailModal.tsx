@@ -36,7 +36,7 @@ const MaterialDetailModal: React.FC<MaterialDetailModalProps> = ({
             {material.name}
           </h2>
           <p className="mt-1 text-sm leading-6 text-gray-600">
-            Descrioción: {material.description}
+            Descripción: {material.description}
           </p>
 
           <div className="mt-10 flex flex-col gap-y-8">
@@ -54,11 +54,11 @@ const MaterialDetailModal: React.FC<MaterialDetailModalProps> = ({
                 />
                 <div className="ml-4">
                   <p className="text-sm font-semibold text-gray-900">
-                    Vendedor: {material.user.name}
+                    Vendedor
                   </p>
-                  <p className="text-sm text-gray-500">
-                    Correro: {material.user.email}
-                  </p>
+                  <p className="text-sm">{material.user.name}</p>
+                  <p className="text-sm font-semibold text-gray-900">Correo</p>
+                  <p className="text-sm truncate">{material.user.email}</p>
                 </div>
               </div>
               {/* <div className="flex items-center gap-x-2">

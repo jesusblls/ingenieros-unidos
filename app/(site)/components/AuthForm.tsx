@@ -50,6 +50,15 @@ const AuthForm = () => {
     setIsLoading(true);
 
     if (variant === "REGISTER") {
+      // Validate password confirmation
+      if (data.password !== data.password_confirmation) {
+        toast.error("Las contraseñas no coinciden");
+        setIsLoading(false);
+        return;
+      }
+
+      console.log("entramos");
+
       axios
         .post("/api/register", data)
         .then(() =>
@@ -67,7 +76,10 @@ const AuthForm = () => {
             router.push("/home");
           }
         })
-        .catch(() => toast.error("Something went wrong!"))
+        .catch((error) => {
+          console.log(error.response.data);
+          toast.error(error.response.data);
+        })
         .finally(() => setIsLoading(false));
     }
 
@@ -149,6 +161,17 @@ const AuthForm = () => {
             label="Contraseña"
             type="password"
           />
+          {variant === "REGISTER" && (
+            <Input
+              disabled={isLoading}
+              register={register}
+              errors={errors}
+              required
+              id="password_confirmation"
+              label="Confirmar contraseña"
+              type="password"
+            />
+          )}
           <div>
             <Button disabled={isLoading} fullWidth type="submit">
               {variant === "LOGIN" ? "Iniciar sesión" : "Registrarse"}

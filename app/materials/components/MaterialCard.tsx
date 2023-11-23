@@ -9,6 +9,7 @@ import { IoRemove } from "react-icons/io5";
 import { BsTrash } from "react-icons/bs";
 import axios from "axios";
 import MaterialDetailModal from "./MaterialDetailModal";
+import { toast } from "react-hot-toast";
 
 interface MaterialWithUser extends Material {
   user: User;
@@ -38,7 +39,7 @@ const MaterialCard: React.FC<MaterialCardProps> = ({
         },
       })
       .then((data) => {
-        router.refresh();
+        toast.error("Material eliminado");
       });
   };
 
@@ -64,7 +65,7 @@ const MaterialCard: React.FC<MaterialCardProps> = ({
             {material.name}
           </h5>
         </a>
-        <p className="text-gray-500">Vendidor: {material.user.name}</p>
+        <p className="text-gray-500">Vendedor: {material.user.name}</p>
         <div className="flex items-center justify-between ">
           <span className="text-1xl font-bold text-gray-90">
             ${material.price} MXN

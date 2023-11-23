@@ -58,8 +58,7 @@ const AddMaterialModal: React.FC<AddMaterialModalProps> = ({
       .catch(() => toast.error("Something went wrong!"))
       .finally(() => {
         setIsLoading(false);
-        router.refresh();
-        console.log("refresh");
+        toast.success("¡Material agregado!");
       });
   };
 

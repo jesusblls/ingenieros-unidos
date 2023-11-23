@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import prisma from "@/app/libs/prismadb";
 import { MaterialType } from '@prisma/client';
+import { pusherServer } from '@/app/libs/pusher'
+
 
 export async function GET(request: NextRequest) {
     //Get query params
@@ -64,6 +66,8 @@ export async function POST(
             },
         }
     });
+
+    pusherServer.trigger('materials', 'new-material', newMaterial);
     
     return NextResponse.json(newMaterial, { status: 201 });
 }
@@ -86,6 +90,8 @@ export async function DELETE(
             id,
         }
     });
+
+    pusherServer.trigger('materials', 'remove-material', deletedMaterial);
     
     return NextResponse.json(deletedMaterial, { status: 201 });
 }

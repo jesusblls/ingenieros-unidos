@@ -2,9 +2,9 @@
 
 import { Material, User } from "@prisma/client";
 import MaterialCard from "./MaterialCard";
-import { usePathname, useSearchParams } from "next/navigation";
-import { useRouter } from "next/navigation";
-import { use, useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { pusherClient } from "@/app/libs/pusher";
 
 interface MaterialListProps {
   currentUser: User;
@@ -35,7 +35,22 @@ const MaterialList: React.FC<MaterialListProps> = ({ currentUser }) => {
   };
 
   useEffect(() => {
+    pusherClient.subscribe("materials");
+
     getMaterials();
+
+    const newHandler = (material: MaterialWithUser) => {
+      setMaterials((current) => [material, ...current]);
+    };
+
+    const removeHandler = (material: MaterialWithUser) => {
+      setMaterials((current) =>
+        current.filter((item) => item.id !== material.id)
+      );
+    };
+
+    pusherClient.bind("new-material", newHandler);
+    pusherClient.bind("remove-material", removeHandler);
   }, [search, filter]);
 
   return (
